@@ -1,0 +1,123 @@
+[workspace]
+members = [
+    "crates/3dngin_core",
+    "crates/3dngin_render",
+    "crates/3dngin_audio",
+    "crates/3dngin_input",
+    "crates/3dngin_physics",
+    "crates/3dngin_scene",
+    "crates/3dngin_assets",
+    "crates/3dngin_ui",
+    "crates/3dngin_jrpg",
+    "examples/*",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+license = "MIT OR Apache-2.0"
+authors = ["Your Name <your.email@example.com>"]
+description = "3DNgin - Un moteur de jeu 3D léger et modulaire en Rust"
+homepage = "https://github.com/yourusername/3dngin"
+repository = "https://github.com/yourusername/3dngin"
+readme = "README.md"
+keywords = ["gamedev", "engine", "3d", "jrpg", "rust"]
+categories = ["game-development", "graphics", "multimedia"]
+rust-version = "1.85.0"
+
+[workspace.dependencies]
+# Core dependencies
+log = "0.4"
+env_logger = "0.11"
+anyhow = "1.0"
+thiserror = "1.0"
+
+# Math and utilities
+glam = { version = "0.28", features = ["serde"] }
+bytemuck = { version = "1.14", features = ["derive"] }
+uuid = { version = "1.0", features = ["v4", "serde"] }
+
+# Async and threading
+tokio = { version = "1.0", features = ["full"] }
+futures = "0.3"
+rayon = "1.7"
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+ron = "0.8"
+bincode = "1.3"
+
+# Window management and input
+winit = "0.30"
+gilrs = "0.10"
+
+# Rendering
+wgpu = "0.24"
+image = { version = "0.25", features = ["png", "jpeg"] }
+gltf = "1.3"
+
+# Physics
+rapier3d = "0.20"
+nalgebra = "0.33"
+
+# Audio
+rodio = "0.19"
+cpal = "0.16"
+
+# Asset loading and compression
+flate2 = "1.0"
+lz4 = "1.24"
+
+# UI (optional)
+egui = "0.30"
+egui-wgpu = "0.30"
+egui-winit = "0.30"
+
+# Scripting
+mlua = { version = "0.9", features = ["lua54", "vendored"] }
+
+# Text processing
+regex = "1.0"
+unicode-segmentation = "1.0"
+
+# Development dependencies
+criterion = "0.5"
+proptest = "1.0"
+tracing = "0.1"
+tracing-subscriber = "0.3"
+puffin = "0.19"
+
+# Platform-specific
+[target.'cfg(target_arch = "wasm32")'.workspace.dependencies]
+wasm-bindgen = "0.2"
+web-sys = "0.3"
+console_error_panic_hook = "0.1"
+console_log = "0.2"
+
+[target.'cfg(target_os = "android")'.workspace.dependencies]
+android-activity = "0.4"
+android_logger = "0.11"
+
+[profile.dev]
+opt-level = 1
+debug = true
+overflow-checks = true
+
+[profile.release]
+opt-level = 3
+debug = false
+lto = true
+codegen-units = 1
+panic = "abort"
+overflow-checks = false
+
+[profile.dev.package."*"]
+opt-level = 2
+
+# Profile pour WebAssembly
+[profile.wasm-release]
+inherits = "release"
+opt-level = "s"
+lto = true
+codegen-units = 1 
