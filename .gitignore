@@ -1,0 +1,55 @@
+# Rust
+/target/
+**/*.rs.bk
+Cargo.lock
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+*.tmp
+*.temp
+
+# Game engine specific
+/assets/cache/
+/logs/
+/screenshots/
+/saves/
+/temp/
+
+# Build artifacts
+/dist/
+/build/
+/bin/
+/obj/
+
+# Mobile builds
+/android/app/build/
+/ios/build/
+*.apk
+*.ipa
+
+# WebAssembly
+/pkg/
+/wasm-pack.log
+/web/dist/
+
+# Documentation
+/book/
+/mdbook/
+
+# Test artifacts
+/test_results/
+/coverage/
+*.profraw
+
+# Local configuration
+.env
+.env.local
+config.local.toml 
